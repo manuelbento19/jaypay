@@ -12,7 +12,7 @@
 	<artifactId>jaypay</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jaypay</name>
-	<description>A simple wallet system using Java Spring</description>
+		<description>A simple wallet system using Java Spring</description>
 	<url/>
 	<licenses>
 		<license/>
