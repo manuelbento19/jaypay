@@ -1,43 +1,44 @@
 # JayPay - A Simple Wallet System
-JayPay é um sistema de carteira digital simples desenvolvido com Java e o framework Spring. Ele oferece uma API para gerenciar saldos de usuários, realizar transferências e consultar transações de forma prática e eficiente, utilizando PostgreSQL como banco de dados.
+JayPay is a simple digital wallet system developed with Java and the Spring framework. It offers an API to manage user balances, make transfers and query transactions in a practical and efficient way, using PostgreSQL as the database.
 
-## Funcionalidades
-- **Gerenciamento de usuários**: Criação de contas e consulta de saldos.
-- **Transferências**: Realização de transferências entre usuários.
-- **Histórico de transações**: Visualização do histórico de transações realizadas pelos usuários.
-- **Segurança**: Autenticação e autorização via JWT.
+## Features
+- **User management**: Creating accounts and checking balances.
+- **Transfers**: Carrying out transfers between users.
+- **Transaction history**: View the history of transactions carried out by users.
+- **Security**: Authentication and authorization via JWT.
 
-## Tecnologias utilizadas
+## Technologies
 - **Java 21**
 - **Spring Boot**
 - **Spring Data JPA**
-- **PostgreSQL** 
+- **PostgreSQL**
 - **Spring Security**
-- **JUnit e Mockito**
+- **JUnit and Mockito**
 
-## Como rodar o projeto
-1. **Clone o repositório:**
-    ```bash
-    git clone https://github.com/manuelbento19/jaypay.git
-    cd jaypay
-    ```
+## How to run
+1. **Clone the repository:**
+ ```bash
+ git clone https://github.com/manuelbento19/jaypay.git
+ jaypay cd
+ ```
 
-2. **Compile e execute o projeto usando o Maven:**
-    ```bash
-    ./mvnw spring-boot:run
-    ```
-    - O servidor será iniciado em `http://localhost:8080`.
+2. **Compile and run the project using Maven:**
+ ```bash
+ ./mvnw spring-boot:run
+ ```
+- The server will be started at `http://localhost:8080`.
 
-3. **Testes**
+3. **Tests**
     ```bash
     ./mvnw test
     ```
-## Contribuindo
-1. Faça o **fork** do repositório.
-2. Crie uma nova **branch** (`git checkout -b feature/nova-feature`).
-3. Realize suas alterações e faça **commit** (`git commit -am 'feat: nova feature'`).
-4. Faça o **push** para sua branch (`git push origin feature/nova-feature`).
-5. Abra um **Pull Request**.
 
-## Licença
-Este projeto está licenciado sob a [MIT License](LICENSE).
+## Contributing
+1. Fork the repository.
+2. Create a new **branch** (`git checkout -b feature/nova-feature`).
+3. Make your changes and do **commit** (`git commit -am 'feat: new feature'`).
+4. **push** to your branch (`git push origin feature/nova-feature`).
+5. Open a **Pull Request**.
+
+## License
+This project is licensed under the [MIT License](LICENSE).
