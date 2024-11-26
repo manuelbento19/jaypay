@@ -19,16 +19,21 @@ public class Account {
     @GeneratedValue(generator = "UUID")
     private UUID  id;
 
+    @Column(nullable = false)
+    private String fullName;
+
     @Column(nullable = false, unique = true)
     private String email;
-    private String fullName;
+
     private String password;
     private String phone;
-    private String code;
 
-    private LocalDateTime verifiedAt;
+    private String accountNumber;
+    private String confirmationCode;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
+
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
