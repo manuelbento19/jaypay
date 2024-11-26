@@ -18,6 +18,7 @@ public class Card {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
+
     @Column(nullable = false,unique = true)
     private String cardNumber;
 
