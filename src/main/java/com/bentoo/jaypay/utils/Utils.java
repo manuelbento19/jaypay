@@ -8,18 +8,27 @@ import java.util.Random;
 public class Utils {
     private final Random random = new Random();
 
+    public String generateAccountNumber(){
+        StringBuilder accountNumber = new StringBuilder("1");
+
+        for (int i = 0; i < 8; i++) {
+            accountNumber.append(random.nextInt(10));
+        }
+        accountNumber.append("454");
+
+        return accountNumber.toString();
+    }
     public String generateCVV(){
         double cvv = Math.floor(Math.random() * 1000);
         return Double.toString(cvv);
     }
     public String generateCardNumber(){
-        StringBuilder accountNumberGenerated = new StringBuilder("2");
+        StringBuilder cardNumber = new StringBuilder("2");
 
         for (int i = 0; i < 8; i++) {
-            accountNumberGenerated.append(random.nextInt(10));
+            cardNumber.append(random.nextInt(10));
         }
-        accountNumberGenerated.append("999");
-
-        return accountNumberGenerated.toString();
+        cardNumber.append("545");
+        return cardNumber.toString();
     }
 }
