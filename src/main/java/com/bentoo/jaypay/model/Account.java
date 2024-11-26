@@ -39,8 +39,15 @@ public class Account {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany()
     @JsonIgnore
     private List<Card> cards;
 
+    @OneToMany(mappedBy = "sender")
+    @JsonIgnore()
+    private List<Transfer> transfers;
+
+    @OneToMany(mappedBy = "receive")
+    @JsonIgnore
+    private List<Transfer> receives;
 }
