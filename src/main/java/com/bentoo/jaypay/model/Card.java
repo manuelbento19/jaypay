@@ -1,5 +1,6 @@
 package com.bentoo.jaypay.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +25,12 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "accountId",nullable = false)
+    @JsonIgnore
     private Account account;
 
     private String cvv;
 
+    @ColumnDefault("0.0")
     private double amount;
     @ColumnDefault("true")
     private boolean active;

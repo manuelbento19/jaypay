@@ -22,8 +22,8 @@ public class CardService implements ICardService {
         String cvv = utils.generateCVV();
         card.setCvv(cvv);
 
-        String cardNumber = "";
-
+        String cardNumber = utils.generateCardNumber();
+        card.setCardNumber(cardNumber);
         return cardRepository.save(card);
     }
 }
