@@ -21,9 +21,10 @@ public class Account {
 
     @Column(nullable = false, unique = true)
     private String email;
+    private String fullName;
     private String password;
     private String phone;
-    private String verifyCode;
+    private String code;
 
     private LocalDateTime verifiedAt;
     @CreationTimestamp
