@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class TransferService implements ITransferService {
@@ -60,12 +64,9 @@ public class TransferService implements ITransferService {
         var sender = senderCardExists.get();
         sender.setAmount(sender.getAmount() - amount);
 
-        //Um mapper here
-        var newTransfer = new Transfer();
-        newTransfer.setAmount(amount);
-        newTransfer.setSender(sender);
-        newTransfer.setReceiver(receiver);
+        var transferResult = transferRepository.save(new Transfer(sender,receiver,amount));
 
-        return transferRepository.save(newTransfer);
+        cardRepository.saveAll(Arrays.asList(sender,receiver));
+        return transferResult;
     }
 }

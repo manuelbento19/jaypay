@@ -31,4 +31,10 @@ public class Transfer {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    public Transfer(Card sender, Card receiver, double amount){
+        this.sender = sender;
+        this.receiver = receiver;
+        this.amount = amount;
+    }
 }
