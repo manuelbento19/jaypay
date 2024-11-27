@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "accounts")
+@Entity(name = "accounts")
 public class Account {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -42,12 +42,4 @@ public class Account {
     @OneToMany()
     @JsonIgnore
     private List<Card> cards;
-
-    @OneToMany(mappedBy = "sender")
-    @JsonIgnore()
-    private List<Transfer> transfers;
-
-    @OneToMany(mappedBy = "receive")
-    @JsonIgnore
-    private List<Transfer> receives;
 }

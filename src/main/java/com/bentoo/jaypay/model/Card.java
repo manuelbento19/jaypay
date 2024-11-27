@@ -7,14 +7,14 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
-@Table(name = "cards")
+@Entity(name = "cards")
 public class Card {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -42,5 +42,13 @@ public class Card {
     private LocalDateTime updatedAt;
 
     private LocalDateTime expireAt;
+
+    @OneToMany(mappedBy = "sender")
+    @JsonIgnore()
+    private List<Transfer> transfers;
+
+    @OneToMany(mappedBy = "receiver")
+    @JsonIgnore
+    private List<Transfer> receives;
 
 }

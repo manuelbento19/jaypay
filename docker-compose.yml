@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: jaypay_db
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=jaypay
+      - POSTGRES_PASSWORD=jaypay
+      - POSTGRES_DB=jaypay
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface ICardRepository extends JpaRepository<Card, UUID> {
-    Card findByOwnerId(UUID accountId);
+
 }

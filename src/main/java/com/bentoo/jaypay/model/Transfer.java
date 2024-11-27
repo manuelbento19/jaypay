@@ -2,7 +2,6 @@ package com.bentoo.jaypay.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -11,19 +10,18 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@Table(name = "transfers")
+@Entity(name = "transfers")
 public class Transfer {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "sender_id")
+    @JoinColumn(name = "senderId")
     private Card sender;
 
     @ManyToOne
-    @JoinColumn(name = "receiver_id")
+    @JoinColumn(name = "receiverId")
     private Card receiver;
 
     @Column(nullable = false)
