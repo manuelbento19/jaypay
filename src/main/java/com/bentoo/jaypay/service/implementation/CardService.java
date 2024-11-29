@@ -2,10 +2,8 @@ package com.bentoo.jaypay.service.implementation;
 
 import com.bentoo.jaypay.dto.card.CardDTO;
 import com.bentoo.jaypay.model.Card;
-import com.bentoo.jaypay.model.Transfer;
 import com.bentoo.jaypay.repository.IAccountRepository;
 import com.bentoo.jaypay.repository.ICardRepository;
-import com.bentoo.jaypay.service.IAccountService;
 import com.bentoo.jaypay.service.ICardService;
 import com.bentoo.jaypay.utils.Utils;
 import org.modelmapper.ModelMapper;

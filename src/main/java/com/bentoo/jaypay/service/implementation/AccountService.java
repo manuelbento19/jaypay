@@ -26,10 +26,8 @@ public class AccountService implements IAccountService {
 
     public Account create(AccountDTO accountDTO) throws Exception {
         Account account = this.convertToEntity(accountDTO);
-        Account existAccount = accountRepository.findByEmail(account.getEmail());
-        if(existAccount != null){
-            throw new Exception("Account already exists.");
-        }
+        accountRepository.findByEmail(account.getEmail()).orElseThrow(()-> new Exception("Account already exists."));
+
         String accountNumber = utils.generateAccountNumber();
         account.setAccountNumber(accountNumber);
         String hashPassword = cryptLib.hash(account.getPassword());
