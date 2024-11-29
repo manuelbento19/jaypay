@@ -1,6 +1,7 @@
 package com.bentoo.jaypay.service.implementation;
 
 import com.bentoo.jaypay.dto.account.AccountDTO;
+import com.bentoo.jaypay.exception.AppError;
 import com.bentoo.jaypay.lib.CryptLib;
 import com.bentoo.jaypay.model.Account;
 import com.bentoo.jaypay.repository.IAccountRepository;
@@ -27,7 +28,7 @@ public class AccountService implements IAccountService {
     public Account create(AccountDTO accountDTO) throws Exception {
         Account account = this.convertToEntity(accountDTO);
         accountRepository.findByEmail(account.getEmail()).ifPresent(accountExists -> {
-            throw new RuntimeException("Account already exists.");
+            throw new AppError("Account already exists.");
         });
 
         String accountNumber = utils.generateAccountNumber();
