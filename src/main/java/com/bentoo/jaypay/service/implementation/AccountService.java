@@ -26,7 +26,9 @@ public class AccountService implements IAccountService {
 
     public Account create(AccountDTO accountDTO) throws Exception {
         Account account = this.convertToEntity(accountDTO);
-        accountRepository.findByEmail(account.getEmail()).orElseThrow(()-> new Exception("Account already exists."));
+        accountRepository.findByEmail(account.getEmail()).ifPresent(accountExists -> {
+            throw new RuntimeException("Account already exists.");
+        });
 
         String accountNumber = utils.generateAccountNumber();
         account.setAccountNumber(accountNumber);
