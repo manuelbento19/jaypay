@@ -7,6 +7,7 @@ import com.bentoo.jaypay.repository.ICardRepository;
 import com.bentoo.jaypay.repository.ITransferRepository;
 import com.bentoo.jaypay.service.ITransferService;
 import com.bentoo.jaypay.utils.Utils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,11 @@ public class TransferService implements ITransferService {
     private ICardRepository cardRepository;
     @Autowired
     private Utils utils;
+    private final ModelMapper modelMapper;
+
+    public TransferService(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
 
     public Card create(Card card) throws Exception {
         var expireDate = LocalDateTime.now().plusYears(1);
@@ -52,8 +58,6 @@ public class TransferService implements ITransferService {
         if(amount > senderCardExists.get().getAmount()){
             throw new Exception("Insufficient funds. transfer amount exceeds available balance.");
         }
-        // I'll need decrement available balance of  sender card, but not now
-        //
 
         var receiver = receiverCardExists.get();
         receiver.setAmount(receiver.getAmount()+amount);
@@ -65,5 +69,13 @@ public class TransferService implements ITransferService {
 
         cardRepository.saveAll(Arrays.asList(sender,receiver));
         return transferResult;
+    }
+
+    public Transfer convertToEntity(TransferDTO dto) {
+        return modelMapper.map(dto, Transfer.class);
+    }
+
+    public TransferDTO convertToDTO(Transfer entity) {
+        return modelMapper.map(entity, TransferDTO.class);
     }
 }
