@@ -27,7 +27,7 @@ public class CardService implements ICardService {
     }
 
     public Card create(CardDTO cardDTO) throws Exception {
-        var account = accountRepository.findById(cardDTO.getAccountId()).orElseThrow(() -> new Exception("Account doesn't exists"));
+        var account = accountRepository.findByAccountNumber(cardDTO.getAccountId()).orElseThrow(() -> new Exception("Account doesn't exists"));
         Card card = this.convertToEntity(cardDTO);
         card.setAccount(account);
 
