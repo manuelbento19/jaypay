@@ -17,7 +17,7 @@ public class AccountController {
     @PostMapping(path = "")
     public ResponseEntity<Account> createAccount(@RequestBody AccountDTO body) throws Exception{
         var result = accountService.create(body);
-        var uri = UriComponentsBuilder.fromPath("/").build().toUri();
+        var uri = UriComponentsBuilder.fromPath("/account").build().toUri();
         return ResponseEntity.created(uri).body(result);
     }
 }
