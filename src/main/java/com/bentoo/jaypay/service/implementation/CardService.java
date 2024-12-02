@@ -1,6 +1,7 @@
 package com.bentoo.jaypay.service.implementation;
 
 import com.bentoo.jaypay.dto.card.CardDTO;
+import com.bentoo.jaypay.exception.AppError;
 import com.bentoo.jaypay.model.Card;
 import com.bentoo.jaypay.repository.IAccountRepository;
 import com.bentoo.jaypay.repository.ICardRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CardService implements ICardService {
@@ -27,7 +29,7 @@ public class CardService implements ICardService {
     }
 
     public Card create(CardDTO cardDTO) throws Exception {
-        var account = accountRepository.findByAccountNumber(cardDTO.getAccountId()).orElseThrow(() -> new Exception("Account doesn't exists"));
+        var account = accountRepository.findByAccountNumber(cardDTO.getAccountId()).orElseThrow(() -> new AppError("Account doesn't exists"));
         Card card = this.convertToEntity(cardDTO);
         card.setAccount(account);
 
@@ -39,6 +41,11 @@ public class CardService implements ICardService {
         String cardNumber = utils.generateCardNumber();
         card.setCardNumber(cardNumber);
         return cardRepository.save(card);
+    }
+
+    public List<Card> getAccountCards(String accountNumber) throws Exception {
+        var account = accountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new AppError("Account doesn't exists"));
+        return cardRepository.findAll().stream().filter(item->item.getAccount()==account).toList();
     }
 
     public Card convertToEntity(CardDTO dto) {
