@@ -24,7 +24,7 @@ public class Card {
     private String cardNumber;
 
     @ManyToOne
-    @JoinColumn(name = "accountId",nullable = false)
+    @JoinColumn(name = "accountId")
     @JsonIgnore
     private Account account;
 

@@ -30,8 +30,8 @@ public class Account {
     private String password;
     private String phone;
 
+    @Column(nullable = false,unique = true)
     private String accountNumber;
-    private String confirmationCode;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -39,7 +39,7 @@ public class Account {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "account")
     @JsonIgnore
     private List<Card> cards;
 }
