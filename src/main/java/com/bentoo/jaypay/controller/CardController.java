@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/card")
@@ -34,6 +35,16 @@ public class CardController {
             return ResponseEntity.ok(List.of());
         }
         var result = cardService.getAccountCards(accountNumber);
+        return ResponseEntity.ok(result);
+    }
+    @GetMapping("/activate/:{cardId}")
+    public ResponseEntity<Card> activate(@PathVariable UUID cardId) throws Exception{
+        var result = cardService.activate(cardId);
+        return ResponseEntity.ok(result);
+    }
+    @GetMapping("/deactivate/{cardId}")
+    public ResponseEntity<Card> deactivate(@PathVariable UUID cardId) throws Exception{
+        var result = cardService.deactivate(cardId);
         return ResponseEntity.ok(result);
     }
 }

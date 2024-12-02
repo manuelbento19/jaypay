@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CardService implements ICardService {
@@ -46,6 +47,18 @@ public class CardService implements ICardService {
     public List<Card> getAccountCards(String accountNumber) throws Exception {
         var account = accountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new AppError("Account doesn't exists"));
         return cardRepository.findAll().stream().filter(item->item.getAccount()==account).toList();
+    }
+
+    public Card activate(UUID cardId) throws Exception {
+        var card = cardRepository.findById(cardId).orElseThrow(() -> new AppError("Card doesn't exists"));
+        card.setActive(true);
+        return cardRepository.save(card);
+    }
+
+    public Card deactivate(UUID cardId) throws Exception {
+        var card = cardRepository.findById(cardId).orElseThrow(() -> new AppError("Card doesn't exists"));
+        card.setActive(false);
+        return cardRepository.save(card);
     }
 
     public Card convertToEntity(CardDTO dto) {
