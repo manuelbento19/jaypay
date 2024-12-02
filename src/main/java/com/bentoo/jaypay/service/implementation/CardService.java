@@ -61,6 +61,14 @@ public class CardService implements ICardService {
         return cardRepository.save(card);
     }
 
+    public void remove(UUID cardId) throws Exception {
+        var card = cardRepository.findById(cardId).orElseThrow(() -> new AppError("Card doesn't exists"));
+        if(card.isActive()){
+            throw new AppError("You can't remove active cards.");
+        }
+        cardRepository.delete(card);
+    }
+
     public Card convertToEntity(CardDTO dto) {
         return modelMapper.map(dto, Card.class);
     }

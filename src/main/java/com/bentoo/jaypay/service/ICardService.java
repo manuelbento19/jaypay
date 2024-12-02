@@ -11,4 +11,5 @@ public interface ICardService extends IServiceBase<Card, CardDTO> {
     List<Card> getAccountCards(String accountNumber) throws Exception;
     Card activate(UUID cardId) throws Exception;
     Card deactivate(UUID cardId) throws Exception;
+    void remove(UUID cardId) throws Exception;
 }

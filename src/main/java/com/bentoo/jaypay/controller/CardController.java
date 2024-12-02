@@ -37,14 +37,19 @@ public class CardController {
         var result = cardService.getAccountCards(accountNumber);
         return ResponseEntity.ok(result);
     }
-    @GetMapping("/activate/:{cardId}")
+    @PatchMapping("/activate/{cardId}")
     public ResponseEntity<Card> activate(@PathVariable UUID cardId) throws Exception{
         var result = cardService.activate(cardId);
         return ResponseEntity.ok(result);
     }
-    @GetMapping("/deactivate/{cardId}")
+    @PatchMapping("/deactivate/{cardId}")
     public ResponseEntity<Card> deactivate(@PathVariable UUID cardId) throws Exception{
         var result = cardService.deactivate(cardId);
         return ResponseEntity.ok(result);
+    }
+    @DeleteMapping("{cardId}")
+    public ResponseEntity remove(@PathVariable UUID cardId) throws Exception{
+        cardService.remove(cardId);
+        return ResponseEntity.ok().build();
     }
 }
